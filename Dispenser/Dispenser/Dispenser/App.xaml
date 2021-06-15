@@ -1,0 +1,423 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application
+    x:Class="Dispenser.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <!--
+        Define global resources and styles here, that apply to all pages in your app.
+    -->
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="DarkPurple">#0d1e65</Color>
+
+            <OnPlatform x:Key="selawkFont" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="Selawik" />
+                <On Platform="Android" Value="selawk.ttf#selawk" />
+                <On Platform="UWP" Value="/Assets/Fonts/selawk.ttf#selawk" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="selawkLightFont" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="Selawik-Light" />
+                <On Platform="Android" Value="selawkl.ttf#selawkl" />
+                <On Platform="UWP" Value="/Assets/Fonts/selawkl.ttf#selawkl" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="selawkSemiLightFont" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="Selawik-Semilight" />
+                <On Platform="Android" Value="selawksl.ttf#selawksl" />
+                <On Platform="UWP" Value="/Assets/Fonts/selawksl.ttf#selawksl" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="selawkBoldFont" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="Selawik-Bold" />
+                <On Platform="Android" Value="selawkb.ttf#selawkb" />
+                <On Platform="UWP" Value="/Assets/Fonts/selawkb.ttf#selawkb" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="selawkSemiBoldFont" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="Selawik-Semibold" />
+                <On Platform="Android" Value="selawksb.ttf#selawksb" />
+                <On Platform="UWP" Value="/Assets/Fonts/selawksb.ttf#selawksb" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="IconsRegular" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="Font Awesome 5 Free" />
+                <On Platform="Android" Value="Font Awesome 5 Free-Regular-400.otf#Font Awesome 5 Free Regular" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="IconsSolid" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="Font Awesome 5 Free Solid" />
+                <On Platform="Android" Value="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="IconsBrand" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="Font Awesome 5 Brands" />
+                <On Platform="Android" Value="Font Awesome 5 Brands-Regular-400.otf#Font Awesome 5 Brands Regular" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="barBackgroundColor" x:TypeArguments="Color">
+                <On Platform="iOS">#EFEFF2</On>
+                <On Platform="Android">#00afef</On>
+            </OnPlatform>
+
+            <OnPlatform x:Key="barForeColor" x:TypeArguments="Color">
+                <On Platform="iOS">Black</On>
+                <On Platform="Android">White</On>
+            </OnPlatform>
+
+            <x:Double x:Key="OpacityForRoundEntry">1</x:Double>
+
+            <Color x:Key="BorderColorForRoundEntry">#A9A9A9</Color>
+            <Color x:Key="SwitchOnColor">#b48de3</Color>
+            <Color x:Key="WhiteBlackColor">White</Color>
+            <Color x:Key="BackColor">#EFEFF2</Color>
+            <Color x:Key="PrimaryBlueColor">#2699FB</Color>
+            <Color x:Key="PrimarySilverColor">Silver</Color>
+            <Color x:Key="DarkSilverColorForRoundEntry">#A9A9A9</Color>
+            <Color x:Key="DarkSilverColor">#A9A9A9</Color>
+            <Color x:Key="NavigationBackColor">#00afef</Color>
+            <Color x:Key="NavigationForeColor">White</Color>
+            <Color x:Key="StatusBackColor">White</Color>
+            <Color x:Key="StatusForeColor">Black</Color>
+            <Color x:Key="HeaderForeColor">Black</Color>
+            <Color x:Key="MenuListLabelForeColor">Black</Color>
+            <Color x:Key="MenuListBackColor">White</Color>
+            <Color x:Key="DashboardTilesColor">#f8f8ff</Color>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{DynamicResource NavigationBackColor}" />
+                <Setter Property="BarTextColor" Value="{DynamicResource NavigationForeColor}" />
+            </Style>
+            <Style x:Key="PageHeading" TargetType="Label">
+                <Setter Property="FontFamily" Value="{DynamicResource selawkFont}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="35" />
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="{DynamicResource MenuListLabelForeColor}" />
+            </Style>
+            <Style x:Key="LabelMenuListView" TargetType="Label">
+                <Setter Property="FontFamily" Value="{DynamicResource selawkFont}" />
+                <Setter Property="FontAttributes" Value="None" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="TextColor" Value="{DynamicResource MenuListLabelForeColor}" />
+            </Style>
+            <Style x:Key="LabelIconsRegular400Free" TargetType="Label">
+                <Setter Property="FontFamily" Value="{DynamicResource IconsRegular}" />
+            </Style>
+            <Style x:Key="LabelIconsRegular400Brands" TargetType="Label">
+                <Setter Property="FontFamily" Value="{DynamicResource IconsBrand}" />
+            </Style>
+            <Style x:Key="LabelIconsSolid900" TargetType="Label">
+                <Setter Property="FontFamily" Value="{DynamicResource IconsSolid}" />
+            </Style>
+
+            <!--#region Label-->
+
+            <Style x:Key="Setting" TargetType="Label">
+                <Setter Property="FontFamily" Value="{DynamicResource selawkFont}" />
+                <Setter Property="TextColor" Value="{DynamicResource MenuListLabelForeColor}" />
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="FontSize">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="Android" Value="16" />
+                            <On Platform="iOS" Value="16" />
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="Popup" TargetType="Label">
+                <Setter Property="FontFamily" Value="{DynamicResource selawkFont}" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="{DynamicResource MenuListLabelForeColor}" />
+            </Style>
+
+            <Style x:Key="PopupMessege" TargetType="Label">
+                <Setter Property="FontFamily" Value="{DynamicResource selawkFont}" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="{DynamicResource MenuListLabelForeColor}" />
+            </Style>
+
+            <Style x:Key="Titlename" TargetType="Label">
+                <Setter Property="FontFamily" Value="{DynamicResource selawkSemiBoldFont}" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="{DynamicResource MenuListLabelForeColor}" />
+            </Style>
+
+            <Style x:Key="PrimarySilverLabel" TargetType="Label">
+                <Setter Property="FontFamily" Value="{DynamicResource selawkFont}" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="{DynamicResource PrimarySilverColor}" />
+            </Style>
+
+            <Style x:Key="DarkSilverLabel" TargetType="Label">
+                <Setter Property="FontFamily" Value="{DynamicResource selawkFont}" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="{DynamicResource DarkSilverColor}" />
+            </Style>
+
+            <!--#endregion Label-->
+
+            <!--#region Entry-->
+
+            <Style x:Key="UserName" TargetType="Entry">
+                <Setter Property="FontFamily" Value="{DynamicResource selawkFont}" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="BackgroundColor" Value="Black" />
+                <Setter Property="InputTransparent" Value="False" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="PlaceholderColor" Value="White" />
+                <Setter Property="Opacity" Value=".7" />
+                <Setter Property="FontSize" Value="Default" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+
+            <Style x:Key="RoundDataEntryInFrame" TargetType="Entry">
+                <Setter Property="FontFamily" Value="{DynamicResource selawkFont}" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="IsSpellCheckEnabled" Value="False" />
+                <Setter Property="PlaceholderColor" Value="{DynamicResource PrimarySilverColor}" />
+                <Setter Property="TextColor" Value="{DynamicResource DarkSilverColorForRoundEntry}" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Margin">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Android" Value="0,1.75,0,0" />
+                            <On Platform="iOS" Value="0" />
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="VerticalTextAlignment">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="TextAlignment">
+                            <On Platform="Android" Value="{x:Static TextAlignment.End}" />
+                            <On Platform="iOS" Value="{x:Static TextAlignment.Center}" />
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="RoundDataLabelInFrame" TargetType="Label">
+                <Setter Property="FontFamily" Value="{DynamicResource selawkFont}" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="{DynamicResource MenuListLabelForeColor}" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Margin" Value="0,0,0,0" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+
+            <!--#endregion Entry-->
+
+            <!--#region DatePicker-->
+
+            <Style x:Key="RoundDatePickerInFrame" TargetType="DatePicker">
+                <Setter Property="FontFamily" Value="{DynamicResource selawkFont}" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="{DynamicResource DarkSilverColorForRoundEntry}" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Format" Value="dd/MM/yyyy" />
+                <Setter Property="Margin">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Android" Value="0,1.75,0,0" />
+                            <On Platform="iOS" Value="0" />
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!--#endregion DatePicker-->
+
+            <!--#region Picker-->
+
+            <Style x:Key="RoundPickerInFrame" TargetType="Picker">
+                <Setter Property="FontFamily" Value="{DynamicResource selawkFont}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="{DynamicResource DarkSilverColorForRoundEntry}" />
+                <Setter Property="TitleColor" Value="{DynamicResource PrimarySilverColor}" />
+                <Setter Property="Margin" Value="0,0,0,0" />
+                <Setter Property="FontSize">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS" Value="14" />
+                            <On Platform="Android" Value="15" />
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!--#endregion Picker-->
+
+            <!--#region FrameForEntry-->
+
+            <Style x:Key="RoundDataEntryFrame" TargetType="Frame">
+                <Setter Property="HeightRequest" Value="38" />
+                <Setter Property="BorderColor" Value="{DynamicResource BorderColorForRoundEntry}" />
+                <Setter Property="HasShadow" Value="False" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource WhiteBlackColor}" />
+                <Setter Property="Opacity" Value="{DynamicResource OpacityForRoundEntry}" />
+                <Setter Property="Padding">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="iOS" Value="15,0,12,0" />
+                            <On Platform="Android" Value="12,0,10,0" />
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="CornerRadius">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:Single">
+                            <On Platform="iOS">20</On>
+                            <On Platform="Android">50</On>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!--#endregion FrameForEntry-->
+
+            <!--#region Buttons-->
+
+            <Style x:Key="IconsRegular400Free" TargetType="Button">
+                <Setter Property="FontFamily" Value="{DynamicResource selawkFont}" />
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryBlueColor}" />
+            </Style>
+            <Style x:Key="IconsRegular400Brands" TargetType="Button">
+                <Setter Property="FontFamily" Value="{DynamicResource IconsBrand}" />
+                <Setter Property="TextColor" Value="{DynamicResource MenuListLabelForeColor}" />
+            </Style>
+            <Style x:Key="IconsSolid900" TargetType="Button">
+                <Setter Property="FontFamily" Value="{DynamicResource IconsSolid}" />
+                <Setter Property="TextColor" Value="{DynamicResource MenuListLabelForeColor}" />
+            </Style>
+
+            <Style x:Key="SignInWithBackColor" TargetType="Button">
+                <Setter Property="FontFamily" Value="{DynamicResource selawkFont}" />
+                <Setter Property="FontSize" Value="Default" />
+                <Setter Property="BorderColor" Value="White" />
+                <Setter Property="BorderWidth" Value="4" />
+                <Setter Property="Opacity" Value=".7" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="Black" />
+            </Style>
+
+            <Style x:Key="SignInWithNoBackColor" TargetType="Button">
+                <Setter Property="FontFamily" Value="{DynamicResource selawkSemiBoldFont}" />
+                <Setter Property="FontSize" Value="Body" />
+                <Setter Property="BorderColor" Value="Black" />
+                <Setter Property="BorderWidth" Value="4" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="Opacity" Value=".5" />
+                <Setter Property="BackgroundColor" Value="White" />
+            </Style>
+
+            <Style x:Key="SignUpWithNoBackColor" TargetType="Button">
+                <Setter Property="FontFamily" Value="{DynamicResource selawkFont}" />
+                <Setter Property="FontSize" Value="Body" />
+                <Setter Property="BorderColor" Value="White" />
+                <Setter Property="BorderWidth" Value="0" />
+                <Setter Property="Opacity" Value=".8" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="Black" />
+            </Style>
+
+            <Style x:Key="Secondary" TargetType="Button">
+                <Setter Property="FontFamily" Value="{DynamicResource selawkFont}" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="#6c757d" />
+            </Style>
+
+            <Style x:Key="Warning" TargetType="Button">
+                <Setter Property="FontFamily" Value="{DynamicResource selawkFont}" />
+                <Setter Property="TextColor" Value="DarkBlue" />
+                <Setter Property="BackgroundColor" Value="#ffc107" />
+            </Style>
+
+            <Style x:Key="Info" TargetType="Button">
+                <Setter Property="FontFamily" Value="{DynamicResource selawkFont}" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="#17A2B8" />
+            </Style>
+
+            <Style x:Key="Light" TargetType="Button">
+                <Setter Property="FontFamily" Value="{DynamicResource selawkFont}" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="BackgroundColor" Value="#F8F9FA" />
+            </Style>
+
+            <Style x:Key="Dark" TargetType="Button">
+                <Setter Property="FontFamily" Value="{DynamicResource selawkSemiBoldFont}" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="#343A40" />
+            </Style>
+
+            <Style x:Key="Success" TargetType="Button">
+                <Setter Property="FontFamily" Value="{DynamicResource selawkSemiBoldFont}" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="#28a745" />
+            </Style>
+
+            <Style x:Key="Primary" TargetType="Button">
+                <Setter Property="FontFamily" Value="{DynamicResource selawkSemiBoldFont}" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="#007BE1" />
+            </Style>
+
+            <Style x:Key="Danger" TargetType="Button">
+                <Setter Property="FontFamily" Value="{DynamicResource selawkSemiBoldFont}" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="#DC3545" />
+            </Style>
+
+            <Style x:Key="IOSType" TargetType="Button">
+                <!--<Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <On Platform="iOS" Value="Segoe UI" />
+                            <On Platform="Android" Value="Segoe UI" />
+                            <On Platform="UWP" Value="Segoe UI" />
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>-->
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="TextColor" Value="#2699FB" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
+            <Style x:Key="BorderRound" TargetType="Button">
+                <Setter Property="FontFamily" Value="{DynamicResource selawkSemiBoldFont}" />
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryBlueColor}" />
+                <Setter Property="BorderColor" Value="{DynamicResource PrimaryBlueColor}" />
+                <Setter Property="BorderWidth" Value="2" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="CornerRadius">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:Int32">
+                            <On Platform="iOS" Value="22" />
+                            <On Platform="Android" Value="25" />
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!--#endregion Buttons-->
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

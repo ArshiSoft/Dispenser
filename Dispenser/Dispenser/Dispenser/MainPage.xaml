@@ -1,0 +1,564 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Dispenser.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:gauge="clr-namespace:Syncfusion.SfGauge.XForms;assembly=Syncfusion.SfGauge.XForms"
+    xmlns:sfButtons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:sfProgress="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms"
+    xmlns:viewModels="clr-namespace:Dispenser.ViewModels"
+    BackgroundColor="AliceBlue">
+    <ContentPage.Resources>
+        <ResourceDictionary />
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <viewModels:MainViewModel x:Name="view" />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="0">
+                <StackLayout
+                    BackgroundColor="{DynamicResource DarkPurple}"
+                    HeightRequest="400"
+                    VerticalOptions="Start">
+                    <Grid Margin="20,25,20,0" VerticalOptions="StartAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            Grid.Column="0"
+                            FontSize="18"
+                            LineBreakMode="WordWrap"
+                            Style="{DynamicResource LabelMenuListView}"
+                            Text="{Binding Date, StringFormat='Today, {0:dd MMMM, yyyy}'}"
+                            TextColor="{DynamicResource DarkSilverColor}"
+                            TextDecorations="None"
+                            VerticalOptions="Center" />
+                        <Button
+                            Grid.Column="1"
+                            BackgroundColor="Transparent"
+                            FontFamily="{DynamicResource IconsSolid}"
+                            FontSize="18"
+                            HeightRequest="50"
+                            Text="&#xf2f5;"
+                            TextColor="AliceBlue"
+                            WidthRequest="50" />
+                    </Grid>
+                    <Label
+                        Margin="20,1,0,0"
+                        LineBreakMode="WordWrap"
+                        Style="{DynamicResource PageHeading}"
+                        Text="Water Temperature"
+                        TextColor="White"
+                        TextDecorations="None"
+                        VerticalOptions="StartAndExpand" />
+
+                    <CarouselView
+                        Margin="0,10,0,0"
+                        HeightRequest="300"
+                        HorizontalOptions="FillAndExpand"
+                        IsBounceEnabled="True"
+                        Loop="False"
+                        PeekAreaInsets="50">
+                        <CarouselView.IndicatorView>
+                            <IndicatorView
+                                Count="2"
+                                HideSingle="True"
+                                IndicatorColor="AliceBlue"
+                                IndicatorSize="20"
+                                IndicatorsShape="Circle"
+                                IsEnabled="True"
+                                IsVisible="True"
+                                Position="5" />
+                        </CarouselView.IndicatorView>
+                        <CarouselView.ItemsSource>
+                            <x:Array Type="x:String">
+                                <x:String>1</x:String>
+                                <x:String>2</x:String>
+                            </x:Array>
+                        </CarouselView.ItemsSource>
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <gauge:SfCircularGauge
+                                    x:Name="circularGauge"
+                                    Margin="0,5,0,0"
+                                    HeightRequest="150"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand"
+                                    WidthRequest="150">
+
+                                    <gauge:SfCircularGauge.Scales>
+                                        <gauge:Scale
+                                            EndValue="50"
+                                            Interval="500"
+                                            LabelColor="AliceBlue"
+                                            LabelOffset="0.92"
+                                            LabelPostfix="°C"
+                                            ShowLabels="True"
+                                            ShowRim="False"
+                                            ShowTicks="False"
+                                            StartValue="0">
+                                            <gauge:Scale.Ranges>
+                                                <gauge:Range
+                                                    EndValue="50"
+                                                    StartValue="0"
+                                                    Thickness="25"
+                                                    Offset="0.8">
+                                                    <gauge:Range.GradientStops>
+                                                        <gauge:GaugeGradientStop Color="#2196F3" Value="0" />
+                                                        <gauge:GaugeGradientStop Color="#5dc9b4" Value="20" />
+                                                        <gauge:GaugeGradientStop Color="#FFDD00" Value="35" />
+                                                        <gauge:GaugeGradientStop Color="#F03E3E" Value="50" />
+                                                    </gauge:Range.GradientStops>
+                                                </gauge:Range>
+                                            </gauge:Scale.Ranges>
+                                            <gauge:Scale.Pointers>
+                                                <gauge:MarkerPointer
+                                                    EnableAnimation="True"
+                                                    EnableDragging="False"
+                                                    MarkerHeight="15"
+                                                    MarkerShape="Circle"
+                                                    MarkerWidth="15"
+                                                    Offset="0.8"
+                                                    Color="Maroon"
+                                                    Value="10" />
+                                            </gauge:Scale.Pointers>
+                                        </gauge:Scale>
+                                    </gauge:SfCircularGauge.Scales>
+
+                                    <gauge:SfCircularGauge.Headers>
+
+                                        <!--<gauge:Header
+                                FontAttributes="Bold"
+                                FontFamily="{DynamicResource selawkFont}"
+                                ForegroundColor="#2196F3"
+                                Position="0.28, 0.86"
+                                Text="0"
+                                TextSize="20" />
+                            <gauge:Header
+                                FontAttributes="Bold"
+                                FontFamily="{DynamicResource selawkFont}"
+                                ForegroundColor="#F03E3E"
+                                Position="0.75, 0.86"
+                                Text="50"
+                                TextSize="20" />-->
+                                        <gauge:Header
+                                            FontAttributes="Bold"
+                                            FontFamily="{DynamicResource selawkFont}"
+                                            ForegroundColor="#5dc9b4"
+                                            Position="0.5,0.5"
+                                            Text="10°C"
+                                            TextSize="20" />
+                                    </gauge:SfCircularGauge.Headers>
+
+                                </gauge:SfCircularGauge>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                    <Label
+                        FontSize="20"
+                        HorizontalOptions="CenterAndExpand"
+                        LineBreakMode="WordWrap"
+                        Style="{DynamicResource LabelMenuListView}"
+                        Text="Cold"
+                        TextColor="{DynamicResource DarkSilverColor}"
+                        TextDecorations="None"
+                        VerticalOptions="Center" />
+
+                </StackLayout>
+                <Image
+                    Margin="0,0,0,0"
+                    Aspect="Fill"
+                    HeightRequest="70"
+                    HorizontalOptions="FillAndExpand"
+                    Source="PurpleCurvedStyle.png"
+                    VerticalOptions="Start" />
+                <Grid HeightRequest="50">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Frame
+                        Grid.Column="1"
+                        Padding="0"
+                        BackgroundColor="{DynamicResource DarkPurple}"
+                        CornerRadius="15"
+                        HeightRequest="50"
+                        WidthRequest="50">
+                        <Label
+                            Margin="0"
+                            FontFamily="{DynamicResource IconsSolid}"
+                            FontSize="22"
+                            HorizontalOptions="Center"
+                            Text="&#xf043;"
+                            TextColor="{DynamicResource PrimaryBlueColor}"
+                            VerticalOptions="Center" />
+                    </Frame>
+                    <Label
+                        Grid.Column="2"
+                        FontSize="18"
+                        LineBreakMode="WordWrap"
+                        Style="{DynamicResource LabelMenuListView}"
+                        Text="You've used 5 litres of water today."
+                        TextColor="{DynamicResource DarkPurple}"
+                        TextDecorations="None"
+                        VerticalOptions="Center"
+                        WidthRequest="250" />
+                </Grid>
+                <Grid Margin="10,15,10,0" HeightRequest="120">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Frame
+                        Grid.Column="1"
+                        Margin="0,0,12,0"
+                        Padding="0"
+                        BackgroundColor="Transparent"
+                        BorderColor="{DynamicResource PrimarySilverColor}"
+                        CornerRadius="15"
+                        HasShadow="True"
+                        WidthRequest="120">
+                        <StackLayout>
+                            <Image
+                                Margin="0,8,0,0"
+                                Aspect="AspectFill"
+                                HeightRequest="38"
+                                HorizontalOptions="Center"
+                                Source="Tap_100px.png"
+                                VerticalOptions="CenterAndExpand" />
+                            <Label
+                                Grid.Column="0"
+                                FontAttributes="Bold"
+                                FontFamily="{DynamicResource selawkBoldFont}"
+                                FontSize="18"
+                                HorizontalOptions="CenterAndExpand"
+                                LineBreakMode="NoWrap"
+                                Text="1110"
+                                TextColor="{DynamicResource PrimaryBlueColor}"
+                                TextDecorations="None"
+                                VerticalOptions="CenterAndExpand" />
+                            <Label
+                                Grid.Column="0"
+                                Margin="0,0,0,8"
+                                FontAttributes="Bold"
+                                FontFamily="{DynamicResource selawkBoldFont}"
+                                FontSize="18"
+                                HorizontalOptions="CenterAndExpand"
+                                LineBreakMode="NoWrap"
+                                Text="Line Water"
+                                TextColor="{DynamicResource PrimaryBlueColor}"
+                                TextDecorations="None"
+                                VerticalOptions="CenterAndExpand" />
+                        </StackLayout>
+                    </Frame>
+                    <BoxView
+                        Grid.Column="2"
+                        BackgroundColor="{DynamicResource PrimarySilverColor}"
+                        VerticalOptions="FillAndExpand"
+                        WidthRequest="1" />
+                    <Frame
+                        Grid.Column="3"
+                        Margin="12,0,0,0"
+                        Padding="0"
+                        BackgroundColor="Transparent"
+                        BorderColor="{DynamicResource PrimarySilverColor}"
+                        CornerRadius="15"
+                        HasShadow="True"
+                        WidthRequest="120">
+                        <StackLayout>
+                            <Image
+                                Margin="0,6,0,2"
+                                Aspect="AspectFill"
+                                HeightRequest="38"
+                                HorizontalOptions="Center"
+                                Source="Water_100px.png"
+                                VerticalOptions="CenterAndExpand" />
+                            <Label
+                                Grid.Column="0"
+                                FontAttributes="Bold"
+                                FontFamily="{DynamicResource selawkBoldFont}"
+                                FontSize="18"
+                                HorizontalOptions="CenterAndExpand"
+                                LineBreakMode="NoWrap"
+                                Text="77"
+                                TextColor="{DynamicResource PrimaryBlueColor}"
+                                TextDecorations="None"
+                                VerticalOptions="CenterAndExpand" />
+                            <Label
+                                Grid.Column="0"
+                                Margin="0,0,0,8"
+                                FontAttributes="Bold"
+                                FontFamily="{DynamicResource selawkBoldFont}"
+                                FontSize="18"
+                                HorizontalOptions="CenterAndExpand"
+                                LineBreakMode="NoWrap"
+                                Text="Smart Water"
+                                TextColor="{DynamicResource PrimaryBlueColor}"
+                                TextDecorations="None"
+                                VerticalOptions="CenterAndExpand" />
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+                <Grid Margin="20,35,20,0" ColumnDefinitions="*,Auto,*">
+                    <BoxView
+                        Grid.Column="0"
+                        BackgroundColor="{DynamicResource PrimarySilverColor}"
+                        HeightRequest="1"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Column="1"
+                        Margin="10,0,10,0"
+                        FontFamily="{DynamicResource selawkFont}"
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        LineBreakMode="NoWrap"
+                        Text="System Health"
+                        TextColor="{DynamicResource PrimaryBlueColor}"
+                        TextDecorations="None"
+                        VerticalOptions="Center" />
+                    <BoxView
+                        Grid.Column="2"
+                        BackgroundColor="{DynamicResource PrimarySilverColor}"
+                        HeightRequest="1"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center" />
+                </Grid>
+
+                <Grid
+                    Margin="10,5,20,0"
+                    ColumnDefinitions="*,Auto,*"
+                    RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
+                    RowSpacing="5">
+                    <!--#region Particle Filter-->
+                    <sfProgress:SfCircularProgressBar
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="0,0,10,0"
+                        HeightRequest="85"
+                        Progress="85"
+                        ProgressColor="{DynamicResource PrimaryBlueColor}"
+                        SegmentCount="4"
+                        ShowProgressValue="True" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="10,0,10,0"
+                        FontFamily="{DynamicResource selawkSemiBoldFont}"
+                        FontSize="18"
+                        HorizontalOptions="CenterAndExpand"
+                        LineBreakMode="NoWrap"
+                        Text="Particle Filter"
+                        TextColor="{DynamicResource PrimaryBlueColor}"
+                        TextDecorations="None"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Margin="10,0,0,0"
+                        FontFamily="{DynamicResource selawkFont}"
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        LineBreakMode="NoWrap"
+                        Text="Good"
+                        TextColor="{DynamicResource PrimaryBlueColor}"
+                        TextDecorations="None"
+                        VerticalOptions="Center" />
+                    <!--#endregion-->
+
+
+                    <!--#region Anti-Bacterial Filter-->
+                    <sfProgress:SfCircularProgressBar
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="0,0,10,0"
+                        HeightRequest="85"
+                        Progress="85"
+                        ProgressColor="{DynamicResource PrimaryBlueColor}"
+                        SegmentCount="4"
+                        ShowProgressValue="True" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="10,0,10,0"
+                        FontFamily="{DynamicResource selawkSemiBoldFont}"
+                        FontSize="18"
+                        HorizontalOptions="CenterAndExpand"
+                        LineBreakMode="NoWrap"
+                        Text="Anti-Bacterial Filter"
+                        TextColor="{DynamicResource PrimaryBlueColor}"
+                        TextDecorations="None"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Margin="10,0,0,0"
+                        FontFamily="{DynamicResource selawkFont}"
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        LineBreakMode="NoWrap"
+                        Text="Good"
+                        TextColor="{DynamicResource PrimaryBlueColor}"
+                        TextDecorations="None"
+                        VerticalOptions="Center" />
+                    <!--#endregion-->
+
+
+                    <!--#region Carbon Filter-->
+                    <sfProgress:SfCircularProgressBar
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Margin="0,0,10,0"
+                        HeightRequest="85"
+                        Progress="85"
+                        ProgressColor="{DynamicResource PrimaryBlueColor}"
+                        SegmentCount="4"
+                        ShowProgressValue="True" />
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Margin="10,0,10,0"
+                        FontFamily="{DynamicResource selawkSemiBoldFont}"
+                        FontSize="18"
+                        HorizontalOptions="CenterAndExpand"
+                        LineBreakMode="NoWrap"
+                        Text="Carbon Filter"
+                        TextColor="{DynamicResource PrimaryBlueColor}"
+                        TextDecorations="None"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        Margin="10,0,0,0"
+                        FontFamily="{DynamicResource selawkFont}"
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        LineBreakMode="NoWrap"
+                        Text="Good"
+                        TextColor="{DynamicResource PrimaryBlueColor}"
+                        TextDecorations="None"
+                        VerticalOptions="Center" />
+                    <!--#endregion-->
+
+
+                    <!--#region RO Filter-->
+                    <sfProgress:SfCircularProgressBar
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Margin="0,0,10,0"
+                        HeightRequest="85"
+                        Progress="85"
+                        ProgressColor="{DynamicResource PrimaryBlueColor}"
+                        SegmentCount="4"
+                        ShowProgressValue="True" />
+                    <Label
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Margin="10,0,10,0"
+                        FontFamily="{DynamicResource selawkSemiBoldFont}"
+                        FontSize="18"
+                        HorizontalOptions="CenterAndExpand"
+                        LineBreakMode="NoWrap"
+                        Text="RO Filter"
+                        TextColor="{DynamicResource PrimaryBlueColor}"
+                        TextDecorations="None"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="3"
+                        Grid.Column="2"
+                        Margin="10,0,0,0"
+                        FontFamily="{DynamicResource selawkFont}"
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        LineBreakMode="NoWrap"
+                        Text="Good"
+                        TextColor="{DynamicResource PrimaryBlueColor}"
+                        TextDecorations="None"
+                        VerticalOptions="Center" />
+                    <!--#endregion-->
+
+
+                    <!--#region Mineral Filter-->
+                    <sfProgress:SfCircularProgressBar
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        Margin="0,0,10,0"
+                        HeightRequest="85"
+                        Progress="85"
+                        ProgressColor="{DynamicResource PrimaryBlueColor}"
+                        SegmentCount="4"
+                        ShowProgressValue="True" />
+                    <Label
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        Margin="10,0,10,0"
+                        FontFamily="{DynamicResource selawkSemiBoldFont}"
+                        FontSize="18"
+                        HorizontalOptions="CenterAndExpand"
+                        LineBreakMode="NoWrap"
+                        Text="Mineral Filter"
+                        TextColor="{DynamicResource PrimaryBlueColor}"
+                        TextDecorations="None"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="4"
+                        Grid.Column="2"
+                        Margin="10,0,0,0"
+                        FontFamily="{DynamicResource selawkFont}"
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        LineBreakMode="NoWrap"
+                        Text="Good"
+                        TextColor="{DynamicResource PrimaryBlueColor}"
+                        TextDecorations="None"
+                        VerticalOptions="Center" />
+                    <!--#endregion-->
+
+
+                    <!--#region UV LED-->
+                    <sfProgress:SfCircularProgressBar
+                        Grid.Row="5"
+                        Grid.Column="0"
+                        Margin="0,0,10,0"
+                        HeightRequest="85"
+                        Progress="85"
+                        ProgressColor="{DynamicResource PrimaryBlueColor}"
+                        SegmentCount="4"
+                        ShowProgressValue="True" />
+                    <Label
+                        Grid.Row="5"
+                        Grid.Column="1"
+                        Margin="10,0,10,0"
+                        FontFamily="{DynamicResource selawkSemiBoldFont}"
+                        FontSize="18"
+                        HorizontalOptions="CenterAndExpand"
+                        LineBreakMode="NoWrap"
+                        Text="UV LED"
+                        TextColor="{DynamicResource PrimaryBlueColor}"
+                        TextDecorations="None"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="5"
+                        Grid.Column="2"
+                        Margin="10,0,0,0"
+                        FontFamily="{DynamicResource selawkFont}"
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        LineBreakMode="NoWrap"
+                        Text="Good"
+                        TextColor="{DynamicResource PrimaryBlueColor}"
+                        TextDecorations="None"
+                        VerticalOptions="Center" />
+                    <!--#endregion-->
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
