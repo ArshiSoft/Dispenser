@@ -73,10 +73,7 @@
                                 Position="5" />
                         </CarouselView.IndicatorView>
                         <CarouselView.ItemsSource>
-                            <x:Array Type="x:String">
-                                <x:String>1</x:String>
-                                <x:String>2</x:String>
-                            </x:Array>
+                            <x:String>1</x:String>
                         </CarouselView.ItemsSource>
                         <CarouselView.ItemTemplate>
                             <DataTemplate>
