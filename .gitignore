@@ -11,3 +11,6 @@
 /Dispenser/Dispenser/Dispenser.iOS/obj
 /Dispenser/Dispenser/Dispenser/bin/Release/netstandard2.0
 /Dispenser/Dispenser/Dispenser.Android/bin/Release
+/Dispenser_API/.vs/Dispenser_API
+/Dispenser_API/Dispenser_API/bin
+/Dispenser_API/Dispenser_API/obj
