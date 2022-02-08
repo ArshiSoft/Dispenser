@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Popup:PopupPage
+    x:Class="Dispenser.Popups.PopupVerification"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:Popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    CloseWhenBackgroundIsClicked="True"
+    mc:Ignorable="d"
+    >
+    <Popup:PopupPage.Animation>
+        <Animations:ScaleAnimation
+            DurationIn="300"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinOut"
+            HasBackgroundAnimation="True"
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            />
+    </Popup:PopupPage.Animation>
+    <ContentView>
+        <!--<ContentView.GestureRecognizers>
+            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+        </ContentView.GestureRecognizers>-->
+        <ContentView.Resources>
+            <ResourceDictionary />
+        </ContentView.Resources>
+        <ContentView.Content>
+            <ScrollView>
+                <Frame
+                    x:Name="mainFrame"
+                    Margin="30,0,30,0"
+                    BackgroundColor="{DynamicResource BackColor}"
+                    CornerRadius="35"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    >
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Label
+                            x:Name="lblTitle"
+                            Margin="10,10,10,0"
+                            Style="{DynamicResource PageHeading}"
+                            />
+                        <Label
+                            x:Name="lblInfo"
+                            Margin="5,15,5,10"
+                            Style="{DynamicResource PrimarySilverLabel}"
+                            />
+                        <Frame
+                            Margin="20,5,20,5"
+                            HorizontalOptions="CenterAndExpand"
+                            Style="{DynamicResource RoundDataEntryFrame}"
+                            WidthRequest="160"
+                            >
+                            <Entry
+                                x:Name="txtPin"
+                                FontSize="20"
+                                HorizontalTextAlignment="Center"
+                                Keyboard="Numeric"
+                                MaxLength="4"
+                                Placeholder="4-Digit Code"
+                                Style="{DynamicResource RoundDataEntryInFrame}"
+                                />
+                        </Frame>
+                        <Button
+                            Margin="15,15,15,5"
+                            BackgroundColor="{DynamicResource NavigationBackColor}"
+                            Clicked="VerifyPin"
+                            Style="{DynamicResource Primary}"
+                            Text="Verify"
+                            WidthRequest="100"
+                            />
+                        <Button
+                            Clicked="Cancel_Clicked"
+                            FontSize="15"
+                            Style="{DynamicResource IOSType}"
+                            Text="Cancel"
+                            />
+                    </StackLayout>
+                </Frame>
+            </ScrollView>
+        </ContentView.Content>
+    </ContentView>
+</Popup:PopupPage>

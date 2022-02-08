@@ -6,21 +6,58 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="19.1.0.67" />
-    <PackageReference Include="Syncfusion.Xamarin.SfGauge" Version="19.1.0.67" />
-    <PackageReference Include="Syncfusion.Xamarin.SfProgressBar" Version="19.1.0.69" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />  
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="19.2.0.62" />
+    <PackageReference Include="Syncfusion.Xamarin.SfGauge" Version="19.2.0.62" />
+    <PackageReference Include="Syncfusion.Xamarin.SfProgressBar" Version="19.2.0.62" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2083" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="19.2.0.62" />
+    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="19.2.0.62" />
+    <PackageReference Include="Refit" Version="6.0.38" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Views\" />
+    <Folder Include="Themes\" />
+    <Folder Include="Converters\" />
+    <Folder Include="ViewModels\Forms\" />
+    <Folder Include="Controls\" />
+    <Folder Include="Views\Forms\" />
+    <Folder Include="API\" />
+    <Folder Include="Class\" />
+    <Folder Include="Popups\" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Themes\" />
+    <None Remove="Converters\" />
+    <None Remove="ViewModels\Forms\" />
+    <None Remove="Controls\" />
+    <None Remove="Views\Forms\" />
+    <None Remove="Syncfusion.Xamarin.Core" />
+    <None Remove="Syncfusion.Xamarin.SfComboBox" />
+    <None Remove="API\" />
+    <None Remove="Class\" />
+    <None Remove="Refit" />
+    <None Remove="Rg.Plugins.Popup" />
+    <None Remove="Popups\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Popups\PopupMessege.xaml.cs">
+      <DependentUpon>PopupMessege.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Popups\PopupVerification.xaml.cs">
+      <DependentUpon>PopupVerification.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Popups\PopupWaiting.xaml.cs">
+      <DependentUpon>PopupWaiting.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Popup:PopupPage
+    x:Class="Dispenser.Popups.PopupMessege"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:Popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    CloseWhenBackgroundIsClicked="True"
+    mc:Ignorable="d"
+    >
+    <Popup:PopupPage.Animation>
+        <Animations:ScaleAnimation
+            DurationIn="300"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinOut"
+            HasBackgroundAnimation="True"
+            PositionIn="Center"
+            PositionOut="Top"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            />
+    </Popup:PopupPage.Animation>
+    <ContentView>
+        <ContentView.Resources>
+            <ResourceDictionary />
+        </ContentView.Resources>
+        <ContentView.Content>
+            <StackLayout>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </StackLayout.GestureRecognizers>
+                <Frame
+                    Margin="5"
+                    BackgroundColor="{DynamicResource BackColor}"
+                    CornerRadius="12"
+                    HasShadow="True"
+                    HeightRequest="90"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Start"
+                    >
+                    <Grid Padding="0" ColumnSpacing="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.GestureRecognizers>
+                            <SwipeGestureRecognizer Direction="Up" Swiped="SwipeGestureRecognizer_Swiped" />
+                        </Grid.GestureRecognizers>
+                        <Image
+                            x:Name="img"
+                            Grid.Column="0"
+                            Aspect="AspectFit"
+                            BackgroundColor="Transparent"
+                            HeightRequest="70"
+                            HorizontalOptions="CenterAndExpand"
+                            VerticalOptions="CenterAndExpand"
+                            WidthRequest="70"
+                            />
+                        <Label
+                            x:Name="lblMessege"
+                            Grid.Column="1"
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Start"
+                            Style="{DynamicResource PopupMessege}"
+                            VerticalOptions="FillAndExpand"
+                            />
+                    </Grid>
+                </Frame>
+            </StackLayout>
+        </ContentView.Content>
+    </ContentView>
+</Popup:PopupPage>

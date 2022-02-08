@@ -1,4 +1,7 @@
-﻿
+using Syncfusion.XForms.iOS.Graphics;
+using Syncfusion.XForms.iOS.Border;
+using Syncfusion.XForms.iOS.Buttons;
+
 using Foundation;
 using UIKit;
 
@@ -19,8 +22,12 @@ namespace Dispenser.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NDM5Mzk2QDMxMzkyZTMxMmUzMENkWjJSdFVLTUFqSmozdklpWnJoSUhsWGZkTkpKTndwM09IbEtuUHF1S009");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTAyMzE4QDMxMzkyZTMyMmUzMERsK3FaMmtGVEIvempSZVhGVndHQ3FJYmlpTnpXMDFsUHYwL3NHdzI3Rkk9");
             global::Xamarin.Forms.Forms.Init();
+            SfGradientViewRenderer.Init();
+            SfBorderRenderer.Init();
+            SfButtonRenderer.Init();
+            Rg.Plugins.Popup.Popup.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

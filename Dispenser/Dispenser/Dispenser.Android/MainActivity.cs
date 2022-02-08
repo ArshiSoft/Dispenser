@@ -12,11 +12,12 @@ namespace Dispenser.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NDM5Mzk2QDMxMzkyZTMxMmUzMENkWjJSdFVLTUFqSmozdklpWnJoSUhsWGZkTkpKTndwM09IbEtuUHF1S009");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTAyMzE4QDMxMzkyZTMyMmUzMERsK3FaMmtGVEIvempSZVhGVndHQ3FJYmlpTnpXMDFsUHYwL3NHdzI3Rkk9");
             base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Rg.Plugins.Popup.Popup.Init(this);
             LoadApplication(new App());
             Window.SetStatusBarColor(Color.Rgb(13, 30, 101));
         }

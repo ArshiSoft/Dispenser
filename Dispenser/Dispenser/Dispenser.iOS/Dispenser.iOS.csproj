@@ -79,6 +79,31 @@
     <BundleResource Include="Resources\selawkl.ttf" />
     <BundleResource Include="Resources\selawksb.ttf" />
     <BundleResource Include="Resources\selawksl.ttf" />
+    <BundleResource Include="Resources\LoginBackground.png" />
+    <BundleResource Include="Resources\UIFontIcons.ttf" />
+    <BundleResource Include="Resources\Montserrat-Bold.ttf" />
+    <BundleResource Include="Resources\Montserrat-Medium.ttf" />
+    <BundleResource Include="Resources\Montserrat-Regular.ttf" />
+    <BundleResource Include="Resources\Montserrat-SemiBold.ttf" />
+    <BundleResource Include="Resources\LoginBackground-Landscape.png" />
+    <BundleResource Include="Resources\LoginBackground-Landscape%402x.png" />
+    <BundleResource Include="Resources\LoginBackground-Landscape%402x~ipad.png" />
+    <BundleResource Include="Resources\LoginBackground-Landscape%403x.png" />
+    <BundleResource Include="Resources\LoginBackground-Landscape%403x~ipad.png" />
+    <BundleResource Include="Resources\LoginBackground-Landscape%404x.png" />
+    <BundleResource Include="Resources\LoginBackground-Landscape~ipad.png" />
+    <BundleResource Include="Resources\LoginBackground%402x.png" />
+    <BundleResource Include="Resources\LoginBackground%402x~ipad.png" />
+    <BundleResource Include="Resources\LoginBackground%403x.png" />
+    <BundleResource Include="Resources\LoginBackground%403x~ipad.png" />
+    <BundleResource Include="Resources\LoginBackground%404x.png" />
+    <BundleResource Include="Resources\LoginBackground~ipad.png" />
+    <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
+    <BundleResource Include="Resources\WaterDropsBackground.jpeg" />
+    <BundleResource Include="Resources\Error.png" />
+    <BundleResource Include="Resources\Info.png" />
+    <BundleResource Include="Resources\Success.png" />
+    <BundleResource Include="Resources\Warning.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -144,21 +169,33 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Syncfusion.Xamarin.Buttons">
-      <Version>19.1.0.67</Version>
+      <Version>19.2.0.62</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfGauge">
-      <Version>19.1.0.67</Version>
+      <Version>19.2.0.62</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfProgressBar">
-      <Version>19.1.0.69</Version>
+      <Version>19.2.0.62</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2083" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+    <PackageReference Include="Syncfusion.Xamarin.Core">
+      <Version>19.2.0.62</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfComboBox">
+      <Version>19.2.0.62</Version>
+    </PackageReference>
+    <PackageReference Include="Refit">
+      <Version>6.0.38</Version>
+    </PackageReference>
+    <PackageReference Include="Rg.Plugins.Popup">
+      <Version>2.1.0</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\Dispenser\Dispenser.csproj">
-      <Project>{47592C39-8A89-4FFA-9BC2-2F9F4D44464F}</Project>
+      <Project>{957830DC-66E4-4EF2-AF88-A9852E9C489E}</Project>
       <Name>Dispenser</Name>
     </ProjectReference>
   </ItemGroup>
@@ -170,5 +207,8 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Water_100px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Renderers\" />
   </ItemGroup>
 </Project>

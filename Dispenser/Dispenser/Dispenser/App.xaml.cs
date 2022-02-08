@@ -1,4 +1,7 @@
-﻿using Xamarin.Forms;
+﻿using Dispenser.Class;
+using Dispenser.Views;
+using Dispenser.Views.Forms;
+using Xamarin.Forms;
 
 namespace Dispenser
 {
@@ -7,9 +10,9 @@ namespace Dispenser
 
         public App()
         {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NDM5Mzk2QDMxMzkyZTMxMmUzMENkWjJSdFVLTUFqSmozdklpWnJoSUhsWGZkTkpKTndwM09IbEtuUHF1S009");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTAyMzE4QDMxMzkyZTMyMmUzMERsK3FaMmtGVEIvempSZVhGVndHQ3FJYmlpTnpXMDFsUHYwL3NHdzI3Rkk9");
             InitializeComponent();
-            MainPage = new MainPage();
+            MainPage = new LoginPage();
         }
 
         protected override void OnStart()
