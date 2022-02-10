@@ -1,4 +1,5 @@
 ﻿using Dispenser.Class;
+using Dispenser.Models;
 using Dispenser.Views.Forms;
 using Syncfusion.XForms.Buttons;
 using System;
@@ -13,6 +14,7 @@ namespace Dispenser.ViewModels
         DateTime date;
         bool isrefreshing;
         bool iseditable;
+        string tempname = "Cold";
         int flowsensor1;
         int tdssensor1;
         int tdssensor2;
@@ -28,6 +30,18 @@ namespace Dispenser.ViewModels
         int rofilter;
         int postcarbonfilter;
         int remineralizationfilter;
+        Color sedimentalfiltercolor = Color.Red;
+        Color gacfiltercolor = Color.Red;
+        Color carbonfiltercolor = Color.Red;
+        Color rofiltercolor = Color.Red;
+        Color postcarbonfiltercolor = Color.Red;
+        Color remineralizationfiltercolor = Color.Red;
+        string sedimentalfilterhealth;
+        string gacfilterhealth;
+        string carbonfilterhealth;
+        string rofilterhealth;
+        string postcarbonfilterhealth;
+        string remineralizationfilterhealth;
         int sedimentalfiltermax;
         int gacfiltermax;
         int carbonfiltermax;
@@ -37,12 +51,28 @@ namespace Dispenser.ViewModels
         public MainViewModel()
         {
             Date = DateTime.Now;
+
             if (clsGvar.UserType == UserType.Employee)
                 IsEditable = true;
+
+            Temperatures = new ObservableCollection<Temperature>()
+            {
+                new Temperature
+                {
+                    TempName = "Cold",
+                    TempInCelcius = 8
+                },
+                new Temperature
+                {
+                    TempName = "Hot",
+                    TempInCelcius = 48
+                }
+            };
+
             RefreshCommand = new Command(Refresh);
             SignOutCommand = new Command(SignOut);
         }
-        public ObservableCollection<SfSegmentItem> Image_textCollection { get; set; }
+        public ObservableCollection<Temperature> Temperatures { get; set; }
 
         public ICommand RefreshCommand { get; }
         public ICommand SignOutCommand { get; }
@@ -51,6 +81,12 @@ namespace Dispenser.ViewModels
         {
             get { return date; }
             set { SetProperty(ref date, value); }
+        }
+
+        public string TempName
+        {
+            get { return tempname; }
+            set { SetProperty(ref tempname, value); }
         }
 
         public int FlowSensor1
@@ -155,6 +191,78 @@ namespace Dispenser.ViewModels
             set { SetProperty(ref remineralizationfilter, value); }
         }
 
+        public Color SedimentalFilterColor
+        {
+            get { return sedimentalfiltercolor; }
+            set { SetProperty(ref sedimentalfiltercolor, value); }
+        }
+
+        public Color GACFilterColor
+        {
+            get { return gacfiltercolor; }
+            set { SetProperty(ref gacfiltercolor, value); }
+        }
+
+        public Color CarbonFilterColor
+        {
+            get { return carbonfiltercolor; }
+            set { SetProperty(ref carbonfiltercolor, value); }
+        }
+
+        public Color ROFilterColor
+        {
+            get { return rofiltercolor; }
+            set { SetProperty(ref rofiltercolor, value); }
+        }
+
+        public Color PostCarbonFilterColor
+        {
+            get { return postcarbonfiltercolor; }
+            set { SetProperty(ref postcarbonfiltercolor, value); }
+        }
+
+        public Color RemineralizationFilterColor
+        {
+            get { return remineralizationfiltercolor; }
+            set { SetProperty(ref remineralizationfiltercolor, value); }
+        }
+
+        public string SedimentalFilterHealth
+        {
+            get { return sedimentalfilterhealth; }
+            set { SetProperty(ref sedimentalfilterhealth, value); }
+        }
+
+        public string GACFilterHealth
+        {
+            get { return gacfilterhealth; }
+            set { SetProperty(ref gacfilterhealth, value); }
+        }
+
+        public string CarbonFilterHealth
+        {
+            get { return carbonfilterhealth; }
+            set { SetProperty(ref carbonfilterhealth, value); }
+        }
+
+        public string ROFilterHealth
+        {
+            get { return rofilterhealth; }
+            set { SetProperty(ref rofilterhealth, value); }
+        }
+
+        public string PostCarbonFilterHealth
+        {
+            get { return postcarbonfilterhealth; }
+            set { SetProperty(ref postcarbonfilterhealth, value); }
+        }
+
+        public string RemineralizationFilterHealth
+        {
+            get { return remineralizationfilterhealth; }
+            set { SetProperty(ref remineralizationfilterhealth, value); }
+        }
+
         public int SedimentalFilterMax
         {
             get { return sedimentalfiltermax; }
@@ -210,12 +318,166 @@ namespace Dispenser.ViewModels
                 ROFilter = Convert.ToInt32(Math.Floor(deviceInfo.ROMembraneFilter.ToDecimal() / 1000.ToDecimal()));
                 PostCarbonFilter = Convert.ToInt32(Math.Floor(deviceInfo.PostCarbonFilter.ToDecimal() / 1000.ToDecimal()));
                 RemineralizationFilter = Convert.ToInt32(Math.Floor(deviceInfo.RemineralizationFilter.ToDecimal() / 1000.ToDecimal()));
-                SedimentalFilterMax = deviceInfo.SedimentalFilterMax;
-                GACFilterMax = deviceInfo.GACFilterMax;
-                CarbonFilterMax = deviceInfo.CarbonFilterMax;
-                ROFilterMax = deviceInfo.ROMembraneFilterMax;
-                PostCarbonFilterMax = deviceInfo.PostCarbonFilterMax;
-                RemineralizationFilterMax = deviceInfo.RemineralizationFilterMax;
+                SedimentalFilterMax = SedimentalFilter > deviceInfo.SedimentalFilterMax ? SedimentalFilter : deviceInfo.SedimentalFilterMax;
+                GACFilterMax = GACFilter > deviceInfo.GACFilterMax ? GACFilter : deviceInfo.GACFilterMax;
+                CarbonFilterMax = CarbonFilter > deviceInfo.CarbonFilterMax ? CarbonFilter : deviceInfo.CarbonFilterMax;
+                ROFilterMax = ROFilter > deviceInfo.ROMembraneFilterMax ? ROFilter : deviceInfo.ROMembraneFilterMax;
+                PostCarbonFilterMax = PostCarbonFilter > deviceInfo.PostCarbonFilterMax ? PostCarbonFilter : deviceInfo.PostCarbonFilterMax;
+                RemineralizationFilterMax = RemineralizationFilter > deviceInfo.RemineralizationFilterMax ? RemineralizationFilter : deviceInfo.RemineralizationFilterMax;
+
+                Temperatures[0].TempInCelcius = ColdTempSensor;
+                Temperatures[1].TempInCelcius = HotTempSensor;
+
+                if (SedimentalFilter <= (SedimentalFilterMax / 2))
+                {
+                    SedimentalFilterHealth = "Good";
+                    SedimentalFilterColor = Color.FromHex("#2699FB");
+                }
+                else if (SedimentalFilter > (SedimentalFilterMax / 2) && SedimentalFilter <= (SedimentalFilterMax - (SedimentalFilterMax / 4)))
+                {
+                    SedimentalFilterHealth = "Normal";
+                    SedimentalFilterColor = Color.DarkGreen;
+                }
+                else if (SedimentalFilter > (SedimentalFilterMax - (SedimentalFilterMax / 4)) && SedimentalFilter < SedimentalFilterMax)
+                {
+                    SedimentalFilterHealth = "Bad";
+                    SedimentalFilterColor = Color.Red;
+                }
+                else
+                {
+                    SedimentalFilterHealth = "Change";
+                    SedimentalFilterColor = Color.Red;
+                }
+
+                if (CarbonFilter <= (CarbonFilterMax / 2))
+                {
+                    CarbonFilterHealth = "Good";
+                    CarbonFilterColor = Color.FromHex("#2699FB");
+                }
+                else if (CarbonFilter > (CarbonFilterMax / 2) && CarbonFilter <= (CarbonFilterMax - (CarbonFilterMax / 4)))
+                {
+                    CarbonFilterHealth = "Normal";
+                    CarbonFilterColor = Color.DarkGreen;
+                }
+                else if (CarbonFilter > (CarbonFilterMax - (CarbonFilterMax / 4)) && CarbonFilter < CarbonFilterMax)
+                {
+                    CarbonFilterHealth = "Bad";
+                    CarbonFilterColor = Color.Red;
+                }
+                else
+                {
+                    CarbonFilterHealth = "Change";
+                    CarbonFilterColor = Color.Red;
+                }
+
+                if (GACFilter <= (GACFilterMax / 2))
+                {
+                    GACFilterHealth = "Good";
+                    GACFilterColor = Color.FromHex("#2699FB");
+                }
+                else if (GACFilter > (GACFilterMax / 2) && GACFilter <= (GACFilterMax - (GACFilterMax / 4)))
+                {
+                    GACFilterHealth = "Normal";
+                    GACFilterColor = Color.DarkGreen;
+                }
+                else if (GACFilter > (GACFilterMax - (GACFilterMax / 4)) && GACFilter < GACFilterMax)
+                {
+                    GACFilterHealth = "Bad";
+                    GACFilterColor = Color.Red;
+                }
+                else
+                {
+                    GACFilterHealth = "Change";
+                    GACFilterColor = Color.Red;
+                }
+
+                if (ROFilter <= (ROFilterMax / 2))
+                {
+                    ROFilterHealth = "Good";
+                    ROFilterColor = Color.FromHex("#2699FB");
+                }
+                else if (ROFilter > (ROFilterMax / 2) && ROFilter <= (ROFilterMax - (ROFilterMax / 4)))
+                {
+                    ROFilterHealth = "Normal";
+                    ROFilterColor = Color.DarkGreen;
+                }
+                else if (ROFilter > (ROFilterMax - (ROFilterMax / 4)) && ROFilter < ROFilterMax)
+                {
+                    ROFilterHealth = "Bad";
+                    ROFilterColor = Color.Red;
+                }
+                else
+                {
+                    ROFilterHealth = "Change";
+                    ROFilterColor = Color.Red;
+                }
+
+                if (PostCarbonFilter <= (PostCarbonFilterMax / 2))
+                {
+                    PostCarbonFilterHealth = "Good";
+                    PostCarbonFilterColor = Color.FromHex("#2699FB");
+                }
+                else if (PostCarbonFilter > (PostCarbonFilterMax / 2) && PostCarbonFilter <= (PostCarbonFilterMax - (PostCarbonFilterMax / 4)))
+                {
+                    PostCarbonFilterHealth = "Normal";
+                    PostCarbonFilterColor = Color.DarkGreen;
+                }
+                else if (PostCarbonFilter > (PostCarbonFilterMax - (PostCarbonFilterMax / 4)) && PostCarbonFilter < PostCarbonFilterMax)
+                {
+                    PostCarbonFilterHealth = "Bad";
+                    PostCarbonFilterColor = Color.Red;
+                }
+                else
+                {
+                    PostCarbonFilterHealth = "Change";
+                    PostCarbonFilterColor = Color.Red;
+                }
+
+                if (RemineralizationFilter <= (RemineralizationFilterMax / 2))
+                {
+                    RemineralizationFilterHealth = "Good";
+                    RemineralizationFilterColor = Color.FromHex("#2699FB");
+                }
+                else if (RemineralizationFilter > (RemineralizationFilterMax / 2) && RemineralizationFilter <= (RemineralizationFilterMax - (RemineralizationFilterMax / 4)))
+                {
+                    RemineralizationFilterHealth = "Normal";
+                    RemineralizationFilterColor = Color.DarkGreen;
+                }
+                else if (RemineralizationFilter > (RemineralizationFilterMax - (RemineralizationFilterMax / 4)) && RemineralizationFilter < RemineralizationFilterMax)
+                {
+                    RemineralizationFilterHealth = "Bad";
+                    RemineralizationFilterColor = Color.Red;
+                }
+                else
+                {
+                    RemineralizationFilterHealth = "Change";
+                    RemineralizationFilterColor = Color.Red;
+                }
+
+                if (SedimentalFilterHealth == "Change" ||
+                    GACFilterHealth == "Change" ||
+                    CarbonFilterHealth == "Change" ||
+                    ROFilterHealth == "Change" ||
+                    PostCarbonFilterHealth == "Change" ||
+                    RemineralizationFilterHealth == "Change")
+                {
+                    var message = "These filters Must be changed:\n";
+
+                    if (SedimentalFilterHealth == "Change")
+                        message += "\nSedimental Filter";
+                    if (GACFilterHealth == "Change")
+                        message += "\nGAC Filter";
+                    if (CarbonFilterHealth == "Change")
+                        message += "\nCarbon Filter";
+                    if (ROFilterHealth == "Change")
+                        message += "\nRO Memberane Filter";
+                    if (PostCarbonFilterHealth == "Change")
+                        message += "\nPost Carbon Filter";
+                    if (RemineralizationFilterHealth == "Change")
+                        message += "\nRemineralization Filter";
+
+                    await Application.Current.MainPage.DisplayAlert("Filters Expired!", message, "OK");
+                }
 
                 IsRefreshing = false;
             }

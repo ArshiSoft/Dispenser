@@ -248,5 +248,12 @@ namespace Dispenser
                 }
             }
         }
+
+        void CarouselView_CurrentItemChanged(System.Object sender, Xamarin.Forms.CurrentItemChangedEventArgs e)
+        {
+            var temp = e.CurrentItem as Temperature;
+
+            view.TempName = temp.TempName;
+        }
     }
 }

@@ -69,9 +69,11 @@
 
                         <CarouselView
                             Margin="0,10,0,0"
+                            CurrentItemChanged="CarouselView_CurrentItemChanged"
                             HeightRequest="300"
                             HorizontalOptions="FillAndExpand"
                             IsBounceEnabled="True"
+                            ItemsSource="{Binding Temperatures}"
                             Loop="False"
                             PeekAreaInsets="50"
                             >
@@ -87,9 +89,6 @@
                                     Position="5"
                                     />
                             </CarouselView.IndicatorView>
-                            <CarouselView.ItemsSource>
-                                <x:String>1</x:String>
-                            </CarouselView.ItemsSource>
                             <CarouselView.ItemTemplate>
                                 <DataTemplate>
                                     <gauge:SfCircularGauge
@@ -115,6 +114,7 @@
                                                 >
                                                 <gauge:Scale.Ranges>
                                                     <gauge:Range
+                                                        x:Name="rngValue"
                                                         EndValue="50"
                                                         StartValue="0"
                                                         Thickness="25"
@@ -137,7 +137,7 @@
                                                         MarkerWidth="15"
                                                         Offset="0.8"
                                                         Color="Maroon"
-                                                        Value="8"
+                                                        Value="{Binding TempInCelcius}"
                                                         />
                                                 </gauge:Scale.Pointers>
                                             </gauge:Scale>
@@ -162,9 +162,9 @@
                                             <gauge:Header
                                                 FontAttributes="Bold"
                                                 FontFamily="{DynamicResource selawkFont}"
-                                                ForegroundColor="#5dc9b4"
+                                                ForegroundColor="#FFDD00"
                                                 Position="0.5,0.5"
-                                                Text="8°C"
+                                                Text="{Binding TempInCelcius, StringFormat='{0}°C'}"
                                                 TextSize="20"
                                                 />
                                         </gauge:SfCircularGauge.Headers>
@@ -178,7 +178,7 @@
                             HorizontalOptions="CenterAndExpand"
                             LineBreakMode="WordWrap"
                             Style="{DynamicResource LabelMenuListView}"
-                            Text="Cold"
+                            Text="{Binding TempName}"
                             TextColor="{DynamicResource DarkSilverColor}"
                             TextDecorations="None"
                             VerticalOptions="Center"
@@ -387,7 +387,7 @@
                             HeightRequest="85"
                             Maximum="{Binding SedimentalFilterMax}"
                             Progress="{Binding SedimentalFilter}"
-                            ProgressColor="{DynamicResource PrimaryBlueColor}"
+                            ProgressColor="{Binding SedimentalFilterColor}"
                             SegmentCount="4"
                             ShowProgressValue="True"
                             />
@@ -396,11 +396,11 @@
                             Grid.Column="1"
                             Margin="10,0,10,0"
                             FontFamily="{DynamicResource selawkSemiBoldFont}"
-                            FontSize="18"
+                            FontSize="16"
                             HorizontalOptions="CenterAndExpand"
                             LineBreakMode="NoWrap"
                             Text="Sedimental Filter"
-                            TextColor="{DynamicResource PrimaryBlueColor}"
+                            TextColor="{Binding SedimentalFilterColor}"
                             TextDecorations="None"
                             VerticalOptions="Center"
                             >
@@ -413,11 +413,11 @@
                             Grid.Column="2"
                             Margin="10,0,0,0"
                             FontFamily="{DynamicResource selawkFont}"
-                            FontSize="18"
+                            FontSize="16"
                             HorizontalOptions="Center"
                             LineBreakMode="NoWrap"
-                            Text="Good"
-                            TextColor="{DynamicResource PrimaryBlueColor}"
+                            Text="{Binding SedimentalFilterHealth}"
+                            TextColor="{Binding SedimentalFilterColor}"
                             TextDecorations="None"
                             VerticalOptions="Center"
                             />
@@ -432,7 +432,7 @@
                             HeightRequest="85"
                             Maximum="{Binding GACFilterMax}"
                             Progress="{Binding GACFilter}"
-                            ProgressColor="{DynamicResource PrimaryBlueColor}"
+                            ProgressColor="{Binding GACFilterColor}"
                             SegmentCount="4"
                             ShowProgressValue="True"
                             />
@@ -441,11 +441,11 @@
                             Grid.Column="1"
                             Margin="10,0,10,0"
                             FontFamily="{DynamicResource selawkSemiBoldFont}"
-                            FontSize="18"
+                            FontSize="16"
                             HorizontalOptions="CenterAndExpand"
                             LineBreakMode="NoWrap"
                             Text="GAC Filter"
-                            TextColor="{DynamicResource PrimaryBlueColor}"
+                            TextColor="{Binding GACFilterColor}"
                             TextDecorations="None"
                             VerticalOptions="Center"
                             >
@@ -458,11 +458,11 @@
                             Grid.Column="2"
                             Margin="10,0,0,0"
                             FontFamily="{DynamicResource selawkFont}"
-                            FontSize="18"
+                            FontSize="16"
                             HorizontalOptions="Center"
                             LineBreakMode="NoWrap"
-                            Text="Good"
-                            TextColor="{DynamicResource PrimaryBlueColor}"
+                            Text="{Binding GACFilterHealth}"
+                            TextColor="{Binding GACFilterColor}"
                             TextDecorations="None"
                             VerticalOptions="Center"
                             />
@@ -477,7 +477,7 @@
                             HeightRequest="85"
                             Maximum="{Binding CarbonFilterMax}"
                             Progress="{Binding CarbonFilter}"
-                            ProgressColor="{DynamicResource PrimaryBlueColor}"
+                            ProgressColor="{Binding CarbonFilterColor}"
                             SegmentCount="4"
                             ShowProgressValue="True"
                             />
@@ -486,11 +486,11 @@
                             Grid.Column="1"
                             Margin="10,0,10,0"
                             FontFamily="{DynamicResource selawkSemiBoldFont}"
-                            FontSize="18"
+                            FontSize="16"
                             HorizontalOptions="CenterAndExpand"
                             LineBreakMode="NoWrap"
                             Text="Carbon Filter"
-                            TextColor="{DynamicResource PrimaryBlueColor}"
+                            TextColor="{Binding CarbonFilterColor}"
                             TextDecorations="None"
                             VerticalOptions="Center"
                             >
@@ -503,11 +503,11 @@
                             Grid.Column="2"
                             Margin="10,0,0,0"
                             FontFamily="{DynamicResource selawkFont}"
-                            FontSize="18"
+                            FontSize="16"
                             HorizontalOptions="Center"
                             LineBreakMode="NoWrap"
-                            Text="Good"
-                            TextColor="{DynamicResource PrimaryBlueColor}"
+                            Text="{Binding CarbonFilterHealth}"
+                            TextColor="{Binding CarbonFilterColor}"
                             TextDecorations="None"
                             VerticalOptions="Center"
                             />
@@ -522,7 +522,7 @@
                             HeightRequest="85"
                             Maximum="{Binding ROFilterMax}"
                             Progress="{Binding ROFilter}"
-                            ProgressColor="{DynamicResource PrimaryBlueColor}"
+                            ProgressColor="{Binding ROFilterColor}"
                             SegmentCount="4"
                             ShowProgressValue="True"
                             />
@@ -531,11 +531,11 @@
                             Grid.Column="1"
                             Margin="10,0,10,0"
                             FontFamily="{DynamicResource selawkSemiBoldFont}"
-                            FontSize="18"
+                            FontSize="16"
                             HorizontalOptions="CenterAndExpand"
                             LineBreakMode="NoWrap"
                             Text="RO Filter"
-                            TextColor="{DynamicResource PrimaryBlueColor}"
+                            TextColor="{Binding ROFilterColor}"
                             TextDecorations="None"
                             VerticalOptions="Center"
                             >
@@ -548,11 +548,11 @@
                             Grid.Column="2"
                             Margin="10,0,0,0"
                             FontFamily="{DynamicResource selawkFont}"
-                            FontSize="18"
+                            FontSize="16"
                             HorizontalOptions="Center"
                             LineBreakMode="NoWrap"
-                            Text="Good"
-                            TextColor="{DynamicResource PrimaryBlueColor}"
+                            Text="{Binding ROFilterHealth}"
+                            TextColor="{Binding ROFilterColor}"
                             TextDecorations="None"
                             VerticalOptions="Center"
                             />
@@ -567,7 +567,7 @@
                             HeightRequest="85"
                             Maximum="{Binding PostCarbonFilterMax}"
                             Progress="{Binding PostCarbonFilter}"
-                            ProgressColor="{DynamicResource PrimaryBlueColor}"
+                            ProgressColor="{Binding PostCarbonFilterColor}"
                             SegmentCount="4"
                             ShowProgressValue="True"
                             />
@@ -576,11 +576,11 @@
                             Grid.Column="1"
                             Margin="10,0,10,0"
                             FontFamily="{DynamicResource selawkSemiBoldFont}"
-                            FontSize="18"
+                            FontSize="16"
                             HorizontalOptions="CenterAndExpand"
                             LineBreakMode="NoWrap"
                             Text="Post Carbon Filter"
-                            TextColor="{DynamicResource PrimaryBlueColor}"
+                            TextColor="{Binding PostCarbonFilterColor}"
                             TextDecorations="None"
                             VerticalOptions="Center"
                             >
@@ -593,11 +593,11 @@
                             Grid.Column="2"
                             Margin="10,0,0,0"
                             FontFamily="{DynamicResource selawkFont}"
-                            FontSize="18"
+                            FontSize="16"
                             HorizontalOptions="Center"
                             LineBreakMode="NoWrap"
-                            Text="Good"
-                            TextColor="{DynamicResource PrimaryBlueColor}"
+                            Text="{Binding PostCarbonFilterHealth}"
+                            TextColor="{Binding PostCarbonFilterColor}"
                             TextDecorations="None"
                             VerticalOptions="Center"
                             />
@@ -612,7 +612,7 @@
                             HeightRequest="85"
                             Maximum="{Binding RemineralizationFilterMax}"
                             Progress="{Binding RemineralizationFilter}"
-                            ProgressColor="{DynamicResource PrimaryBlueColor}"
+                            ProgressColor="{Binding RemineralizationFilterColor}"
                             SegmentCount="4"
                             ShowProgressValue="True"
                             />
@@ -621,11 +621,11 @@
                             Grid.Column="1"
                             Margin="10,0,10,0"
                             FontFamily="{DynamicResource selawkSemiBoldFont}"
-                            FontSize="18"
+                            FontSize="16"
                             HorizontalOptions="CenterAndExpand"
                             LineBreakMode="NoWrap"
                             Text="Remineralization Filter"
-                            TextColor="{DynamicResource PrimaryBlueColor}"
+                            TextColor="{Binding RemineralizationFilterColor}"
                             TextDecorations="None"
                             VerticalOptions="Center"
                             >
@@ -638,11 +638,11 @@
                             Grid.Column="2"
                             Margin="10,0,0,0"
                             FontFamily="{DynamicResource selawkFont}"
-                            FontSize="18"
+                            FontSize="16"
                             HorizontalOptions="Center"
                             LineBreakMode="NoWrap"
-                            Text="Good"
-                            TextColor="{DynamicResource PrimaryBlueColor}"
+                            Text="{Binding RemineralizationFilterHealth}"
+                            TextColor="{Binding RemineralizationFilterColor}"
                             TextDecorations="None"
                             VerticalOptions="Center"
                             />
@@ -665,7 +665,7 @@
                             Grid.Column="1"
                             Margin="10,0,10,0"
                             FontFamily="{DynamicResource selawkSemiBoldFont}"
-                            FontSize="18"
+                            FontSize="16"
                             HorizontalOptions="CenterAndExpand"
                             LineBreakMode="NoWrap"
                             Text="UV LED"
@@ -678,7 +678,7 @@
                             Grid.Column="2"
                             Margin="10,0,0,0"
                             FontFamily="{DynamicResource selawkFont}"
-                            FontSize="18"
+                            FontSize="16"
                             HorizontalOptions="Center"
                             LineBreakMode="NoWrap"
                             Text="Good"
